@@ -1,21 +1,22 @@
-bill = input("How much is the bill?\n")
-tip = input("What percentage tip would you like to leave? \n")
-guests = input("How many people are splitting the bill? \n")
+from contextlib import nullcontext
 
-n_bill = float(bill)
-n_tip = float(tip)
-n_guests = int(guests)
+from numpy import empty
 
-percentage = (n_bill * n_tip) / 100
-total = n_bill + percentage
-print(f"the percentage is {percentage} and the total is {total}")
+print("Welcome to Tip Calculator!")
+
+bill = round(float(input("How much is the bill?\n $ ")), 2)
+tip = int(input("What percentage tip would you like to leave? \n %"))
+guests = int(input("How many people are splitting the bill? \n"))
+
+percentage = float(float(bill) * tip / 100)
+total = round(float(bill + percentage), 2)
+split = round(float(total / guests), 2)
 
 
 def calculate_tip():
     if guests == 0:
         print("You can't have 0 guests! No dine and dash!")
         return
-    split = total / n_guests
     print(f"Each person should pay ${split}")
 
 
